@@ -7,7 +7,7 @@ public class Flower extends Plant {
         plot = new String[][] {
             {".",".",".",".","."},
             {".",".",".",".","."},
-            {".",".",getSymbol(),".","."},
+            {".",".",symbol,".","."},
             {".",".",".",".","."},
             {".",".",".",".","."}
         };
@@ -16,20 +16,11 @@ public class Flower extends Plant {
     public void grow(int amount) {
         super.grow(amount);
         
-        String s = getSymbol();
+        // single character makes it easier to visualize
+        String s = symbol;
         switch(size) {
-            case 0:
-                // do nothing
-                plot = new String[][]{
-                    {".",".",".",".","."},
-                    {".",".",  s,".","."},
-                    {".",  s,  s,  s,"."},
-                    {".",".",  s,".","."},
-                    {".",".",".",".","."}
-                };
-                break;
             case 1:
-                //TODO: fix me
+                // do nothing
                 plot = new String[][]{
                     {".",".",".",".","."},
                     {".",".",  s,".","."},
@@ -49,6 +40,16 @@ public class Flower extends Plant {
                 };
                 break;
             case 3:
+                //TODO: fix me
+                plot = new String[][]{
+                    {".",".",".",".","."},
+                    {".",".",  s,".","."},
+                    {".",  s,  s,  s,"."},
+                    {".",".",  s,".","."},
+                    {".",".",".",".","."}
+                };
+                break;
+            case 4:
                 //TODO: fix me
                 plot = new String[][]{
                     {".",".",".",".","."},

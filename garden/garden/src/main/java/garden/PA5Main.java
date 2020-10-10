@@ -14,5 +14,16 @@ public class PA5Main
 
         Plant f = new Flower("Rose");
         System.out.println(f.toString());
+
+        Plant t = new Tree("Banana");
+        System.out.println(t.toString());
+        t.grow(1);
+        System.out.println(t.toString());
+        t.grow(1);
+        System.out.println(t.toString());
+        t.grow(1);
+        System.out.println(t.toString());
+        t.grow(5);
+        System.out.println(t.toString());
     }
 }

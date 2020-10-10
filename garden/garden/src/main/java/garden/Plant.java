@@ -5,9 +5,11 @@ public class Plant {
     protected String type;
     protected int size;
     final int maxSize = 4;
+    final String symbol;
 
     public Plant(String type) {
         this.type = type;
+        symbol = getSymbol();
         size = 0;        
     }
 
