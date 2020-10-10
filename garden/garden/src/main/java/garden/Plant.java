@@ -15,13 +15,12 @@ public class Plant {
         return type.substring(0,1).toLowerCase();
     }
 
-    public void print() {}
     public void grow(int amount) {
         if (size == maxSize) {
             // can't grow any more
             return;
         }
-        
+
         if (amount + size < maxSize) {
             size += amount;
         } else {
