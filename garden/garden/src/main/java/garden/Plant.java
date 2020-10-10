@@ -23,8 +23,18 @@ public class Plant {
             size = maxSize;
         }
     }
-    
-    public void clear() {} 
+
+    public void clear() {
+        size = 0;
+        plot = new String[][] {
+            {".",".",".",".","."},
+            {".",".",".",".","."},
+            {".",".",".",".","."},
+            {".",".",".",".","."},
+            {".",".",".",".","."}
+        };
+    }
+
     public String toString() {
         String result = "";
         for (int outer = 0; outer < 5; outer++) {
