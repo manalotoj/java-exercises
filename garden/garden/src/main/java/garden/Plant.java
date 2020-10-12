@@ -1,17 +1,26 @@
 package garden;
 
 public class Plant {
-    protected String[][] plot;
+    protected Plot plot;
     protected String type;
     protected int size;
-    final int maxSize = 4;
+    final int maxSize = 3;
+    final int maxRow = 5;
+    final int maxCol = 5;
     final String symbol;
 
-    public Plant(String type) {
+    public Plant(String type, Plot plot) {
         this.type = type;
+        this.plot = plot;
         symbol = getSymbol();
-        size = 0;        
+        size = 0;
     }
+
+    // <getters>
+    public Plot getPlot() {
+        return plot;
+    }
+    // </getters>
 
     protected String getSymbol() {
         return type.substring(0,1).toLowerCase();
@@ -30,22 +39,11 @@ public class Plant {
         }
     }
 
-    public void clear() {
-        size = 0;
-        plot = new String[][] {
-            {".",".",".",".","."},
-            {".",".",".",".","."},
-            {".",".",".",".","."},
-            {".",".",".",".","."},
-            {".",".",".",".","."}
-        };
-    }
-
     public String toString() {
         String result = "";
         for (int outer = 0; outer < 5; outer++) {
             for (int inner = 0; inner < 5; inner++) {
-                result += plot[outer][inner];
+                result += plot.plot[outer][inner];
             }            
         }
         return result;

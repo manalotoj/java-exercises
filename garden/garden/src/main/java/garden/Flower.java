@@ -2,15 +2,9 @@ package garden;
 
 public class Flower extends Plant {
 
-    public Flower(String type) {
-        super(type);
-        plot = new String[][] {
-            {".",".",".",".","."},
-            {".",".",".",".","."},
-            {".",".",symbol,".","."},
-            {".",".",".",".","."},
-            {".",".",".",".","."}
-        };
+    public Flower(String type, Plot plot) {
+        super(type, plot);
+        plot.plot[2][2] = symbol;
     }
 
     public void grow(int amount) {
@@ -20,8 +14,7 @@ public class Flower extends Plant {
         String s = symbol;
         switch(size) {
             case 1:
-                // do nothing
-                plot = new String[][]{
+                plot.plot = new String[][]{
                     {".",".",".",".","."},
                     {".",".",  s,".","."},
                     {".",  s,  s,  s,"."},
@@ -30,33 +23,21 @@ public class Flower extends Plant {
                 };
                 break;
             case 2:
-                //TODO: fix me
-                plot = new String[][]{
-                    {".",".",".",".","."},
+                plot.plot = new String[][]{
                     {".",".",  s,".","."},
                     {".",  s,  s,  s,"."},
-                    {".",".",  s,".","."},
-                    {".",".",".",".","."}
+                    {  s,  s,  s,  s,  s},
+                    {".",  s,  s,  s,"."},
+                    {".",".",  s,".","."}
                 };
                 break;
             case 3:
-                //TODO: fix me
-                plot = new String[][]{
-                    {".",".",".",".","."},
-                    {".",".",  s,".","."},
-                    {".",  s,  s,  s,"."},
-                    {".",".",  s,".","."},
-                    {".",".",".",".","."}
-                };
-                break;
-            case 4:
-                //TODO: fix me
-                plot = new String[][]{
-                    {".",".",".",".","."},
-                    {".",".",  s,".","."},
-                    {".",  s,  s,  s,"."},
-                    {".",".",  s,".","."},
-                    {".",".",".",".","."}
+                plot.plot = new String[][]{
+                    {s,s,s,s,s},
+                    {s,s,s,s,s},
+                    {s,s,s,s,s},
+                    {s,s,s,s,s},
+                    {s,s,s,s,s}
                 };
                 break;
             default:
