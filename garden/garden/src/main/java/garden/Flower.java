@@ -7,6 +7,10 @@ public class Flower extends Plant {
         plot.plot[2][2] = symbol;
     }
 
+    protected int getMaxSize() {
+        return 3;
+    }
+
     public void grow(int amount) {
         super.grow(amount);
         

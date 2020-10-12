@@ -4,16 +4,19 @@ public class Plant {
     protected Plot plot;
     protected String type;
     protected int size;
-    final int maxSize = 3;
     final int maxRow = 5;
     final int maxCol = 5;
-    final String symbol;
+    protected final String symbol;
 
     public Plant(String type, Plot plot) {
         this.type = type;
         this.plot = plot;
         symbol = getSymbol();
         size = 0;
+    }
+
+    protected int getMaxSize() {
+        return 3;
     }
 
     // <getters>
@@ -26,16 +29,20 @@ public class Plant {
         return type.substring(0,1).toLowerCase();
     }
 
+    public void grow() {
+        grow(1);
+    }
+
     public void grow(int amount) {
-        if (size == maxSize) {
+        if (size == getMaxSize()) {
             // can't grow any more
             return;
         }
 
-        if (amount + size < maxSize) {
+        if (amount + size < getMaxSize()) {
             size += amount;
         } else {
-            size = maxSize;
+            size = getMaxSize();
         }
     }
 

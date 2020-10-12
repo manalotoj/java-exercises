@@ -1,10 +1,10 @@
 package garden;
 
-public class Tree extends Plant {
+public class Vegetable extends Plant {
 
-    public Tree(String type, Plot plot) {
+    public Vegetable(String type, Plot plot) {
         super(type, plot);
-        plot.plot[4][2] = symbol;
+        plot.plot[0][2] = symbol;
     }
 
     protected int getMaxSize() {
@@ -13,9 +13,8 @@ public class Tree extends Plant {
 
     public void grow(int amount) {
         super.grow(amount);
-
-        int rowIndex = plot.plot[0].length - 1;
-        for (int i = rowIndex; i >= rowIndex - size; i--) {
+        
+        for (int i = 0; i <= size; i++) {
             plot.plot[i][2] = symbol;
         }
     }

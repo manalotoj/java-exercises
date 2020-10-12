@@ -53,23 +53,47 @@ public class PA5Main
 
         g = new Garden(1, 3);
         System.out.println("Print empty 1x3 garden");
-        Plot bananaPlot = new Plot();
-        Plant banana = new Tree("banana", bananaPlot);
-        g.plant(0, 0, banana);
+        g.print();
+        g.plant(0, 0, "Banana");
         System.out.println("Plant banana at 0,0");
         g.print();
         System.out.println();
 
         System.out.println("Plant rose at 0, 1");
-        Plot rosePlot = new Plot();
-        Plant rose2 = new Flower("Rose", rosePlot);
-        g.plant(0, 1, rose2);
+        g.plant(0, 1, "Rose");
         g.print();
 
         System.out.println("Plant tomato at 0, 1");
-        Plot tomatoPlot = new Plot();
-        Plant tomato = new Flower("Iris", tomatoPlot);
-        g.plant(0, 2, tomato);
+        g.plant(0, 2, "Tomato");
+        g.print();
+
+        System.out.println("Grow garden 1");
+        g.grow(1);
+        g.print();
+
+        System.out.println("Grow garden 1");
+        g.grow(1);
+        g.print();
+
+        System.out.println("Grow garden 1");
+        g.grow(1);
+        g.print();
+
+        System.out.println("Grow Trees and Vegetables 5");
+        g.growPlantClass(5, "Tree");
+        g.growPlantClass(5, "Vegetable");
+        g.print();
+
+        System.out.println("Cut garden oak trees");
+        g.cut("Oak");
+        g.print();
+
+        System.out.println("Cut garden banana trees");
+        g.cut("Banana");
+        g.print();
+
+        System.out.println("Pick garden roses");
+        g.pick("Rose");
         g.print();
     }
 }

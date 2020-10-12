@@ -3,13 +3,10 @@ package garden;
 public class Plot {
     protected String[][] plot;
     public Plant plant;
-    protected int size;
-    private final int maxSize = 4;
     public final static int rowSize = 5;
     public final static int colSize = 5;
 
     public Plot() {
-        size = 0;
         initialize();
     }
 
@@ -21,19 +18,9 @@ public class Plot {
         this.plant = plant;
     }
 
-    public void grow() {
-        // call plant.grow(...) and pass in plot
-    }
-
-    public void harvest() {
-        size = 0;
-        plot = new String[][] {
-            {".",".",".",".","."},
-            {".",".",".",".","."},
-            {".",".",".",".","."},
-            {".",".",".",".","."},
-            {".",".",".",".","."}
-        };
+    public void clear() {
+        plant = null;
+        initialize();
     }
 
     private void initialize() {
