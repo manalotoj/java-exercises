@@ -2,11 +2,11 @@ package garden;
 
 public enum Trees 
 {
-    Oak("Oak"), 
-    Willow("Willow"),
-    Banana("Banana"),
-    Coconut("Coconut"),
-    Pine("Pine");
+    oak("oak"), 
+    willow("willow"),
+    banana("banana"),
+    coconut("coconut"),
+    pine("pine");
  
     private String tree;
  

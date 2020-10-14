@@ -3,6 +3,9 @@ package garden;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import javax.swing.plaf.synth.SynthMenuBarUI;
+
 import org.javatuples.Pair;
 
 public class PA5Main 
@@ -21,16 +24,17 @@ public class PA5Main
 			reader = new BufferedReader(new FileReader(filePath));
 			String line = reader.readLine();
 			while (line != null) {
-				System.out.println(line);
-				// read next line
-                line = reader.readLine();
+                //System.out.println(line);
                 if (line.contains("rows")) {
-                    createGarden(line, reader.readLine());
+                    String colsLine = reader.readLine();
+                    createGarden(line, colsLine);
                 } else if(line.equals("")) {
                     // do nothing
                 } else {
                     processGardenCommand(line);
                 }
+                // read next line
+                line = reader.readLine();
 			}
 			reader.close();
 		} catch (IOException e) {
@@ -40,22 +44,26 @@ public class PA5Main
     }
 
     private static void createGarden(String rowsLine, String colsLine) {
-        rows =  Integer.parseInt(rowsLine.split(":")[1]);
-        cols = Integer.parseInt(colsLine.split(":")[1]);
+        rows =  Integer.parseInt(rowsLine.split(":")[1].trim());
+        cols = Integer.parseInt(colsLine.split(":")[1].trim());
         garden = new Garden(rows, cols);
     }
 
     private static void processGardenCommand(String line) {
         String[] lineParts = line.split(" ");
-        String cmd = lineParts[0];
+        String cmd = lineParts[0].toLowerCase();
+
+        printCommand(cmd, lineParts);
 
         switch(cmd) {
-            case "PLANT":
+            case "plant":
+                //System.out.println("is flower: " + Flowers.isFlower(lineParts[2]));
                 Pair<Integer, Integer> coords = parseCoordinates(lineParts[1]);
+                //System.out.println("Line Parts: " + lineParts[2]);
                 garden.plant(coords.getValue0(), coords.getValue1(), lineParts[2]);
                 break;
 
-            case "GROW":
+            case "grow":
                 processGrow(lineParts);
                 break;
 
@@ -77,12 +85,33 @@ public class PA5Main
         }
     }
 
+    private static void printCommand(String cmd, String[] lineParts) {
+        if (cmd.equals("plant")) return;
+        
+        for (int i = 0; i < lineParts.length; i++) {
+            if (i == 0) {
+                System.out.print(lineParts[i].toUpperCase());
+            } else {
+                System.out.print(" " + lineParts[i]);
+            }
+        }
+        
+        System.out.print("\n");
+        if (!cmd.equals("print")) {
+            System.out.print("\n");
+        }
+    }
+
     private static void processPick(String[] lineParts) {
         if (lineParts.length == 1) {
             garden.pick();
         } else {
-            Pair<Integer, Integer> coords = parseCoordinates(lineParts[1]);
-            garden.pick(coords.getValue0(), coords.getValue1());
+            if (lineParts[1].contains("(")) {
+                Pair<Integer, Integer> coords = parseCoordinates(lineParts[1]);
+                garden.pick(coords.getValue0(), coords.getValue1());
+            } else {
+                garden.pick(lineParts[1]);
+            }
         }
     }
 
@@ -90,8 +119,12 @@ public class PA5Main
         if (lineParts.length == 1) {
             garden.cut();
         } else {
-            Pair<Integer, Integer> coords = parseCoordinates(lineParts[1]);
-            garden.cut(coords.getValue0(), coords.getValue1());
+            if (lineParts[1].contains("(")) {
+                Pair<Integer, Integer> coords = parseCoordinates(lineParts[1]);
+                garden.cut(coords.getValue0(), coords.getValue1());
+            } else {
+                garden.cut(lineParts[1]);
+            }
         }
     }
 
@@ -99,8 +132,12 @@ public class PA5Main
         if (lineParts.length == 1) {
             garden.harvest();
         } else {
-            Pair<Integer, Integer> coords = parseCoordinates(lineParts[1]);
-            garden.harvest(coords.getValue0(), coords.getValue1());
+            if (lineParts[1].contains("(")) {
+                Pair<Integer, Integer> coords = parseCoordinates(lineParts[1]);
+                garden.harvest(coords.getValue0(), coords.getValue1());
+            } else {
+                garden.harvest(lineParts[1]);
+            }
         }
     }
 
@@ -117,7 +154,7 @@ public class PA5Main
 
             case 3:
                 Integer amount1 = Integer.parseInt(lineParts[1]);
-                if (lineParts[3].contains("(")) {
+                if (lineParts[2].contains("(")) {
                     // grow 1 (x,y)
                     Pair<Integer, Integer> coords = parseCoordinates(lineParts[2]);
                     garden.grow(amount1, coords.getValue0(), coords.getValue1());
@@ -134,6 +171,7 @@ public class PA5Main
     }
 
     private static Pair<Integer, Integer> parseCoordinates(String coords) {
+        //System.out.println("coords: " + coords);
         coords = coords.replace("(", "").replace(")", "");
         String[] coorsParts = coords.split(",");
         return new Pair<>(Integer.parseInt(coorsParts[0]), Integer.parseInt(coorsParts[1]));

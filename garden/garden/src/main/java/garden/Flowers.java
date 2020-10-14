@@ -2,12 +2,12 @@ package garden;
 
 public enum Flowers 
 {
-    Rose("Rose"), 
-    Lily("Lily"),
-    Iris("Iris"),
-    Daisy("Daisy"),
-    Tulip("Tulip"),
-    Sunflower("Sunflower");
+    rose("rose"), 
+    lily("lily"),
+    iris("iris"),
+    daisy("daisy"),
+    tulip("tulip"),
+    sunflower("sunflower");
  
     private String flower;
  

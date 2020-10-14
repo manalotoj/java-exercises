@@ -16,6 +16,7 @@ public class Garden {
     public void plant(int row, int col, String plantType) {
         Plot plot = garden[row][col];
         Plant plant;
+        
         if (Flowers.isFlower(plantType)) {
             plant = new Flower(plantType, plot);
             plot.plant(plant);
@@ -52,6 +53,8 @@ public class Garden {
     }
 
     public void grow(int amount, int row, int col) {
+        if (!validateCoords(row, col)) return;
+        
         Plant plant = garden[row][col].plant;
         if (plant != null) {
             plant.grow(amount);
@@ -95,6 +98,8 @@ public class Garden {
     }
 
     public void harvest(int row, int col) {
+        if (!validateCoords(row, col)) return;
+
         Plant plant = garden[row][col].plant;
         if (plant != null && plant instanceof Vegetable) {
             garden[row][col].clear();
@@ -127,6 +132,8 @@ public class Garden {
     }
 
     public void pick(int row, int col) {
+        if (!validateCoords(row, col)) return;
+
         Plant plant = garden[row][col].plant;
         if (plant != null && plant instanceof Flower) {
             garden[row][col].clear();
@@ -145,6 +152,7 @@ public class Garden {
 
         applyToGarden(pickFlowerOfType);
     }
+
     public void cut() {
         IPlotVoidOperator cutTrees = (plot) -> {
             Plant plant = plot.plant;
@@ -158,6 +166,8 @@ public class Garden {
     }
 
     public void cut(int row, int col) {
+        if (!validateCoords(row, col)) return;
+
         Plant plant = garden[row][col].plant;
         if (plant != null && plant instanceof Tree) {
             garden[row][col].clear();
@@ -198,6 +208,10 @@ public class Garden {
         for (int i = 0; i < rowSize * Plot.rowSize; i++) {
             System.out.println(String.join("", arrayForPrint[i]));
         }
+    }
+
+    private boolean validateCoords(int rowIndex, int colIndex) {
+        return rowIndex < rowSize && colIndex < colIndex;
     }
 
     private void copyArray(String[][] source, String[][] target, int rowStart, int colStart) {

@@ -2,11 +2,11 @@ package garden;
 
 public enum Vegetables 
 {
-    Garlic("Garlic"), 
-    Zucchini("Zucchini"),
-    Tomato("Tomato"),
-    Yam("Yam"),
-    Lettuce("Lettuce");
+    garlic("garlic"), 
+    zucchini("zucchini"),
+    tomato("tomato"),
+    yam("yam"),
+    lettuce("lettuce");
  
     private String vegetable;
  
