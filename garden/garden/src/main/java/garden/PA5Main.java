@@ -57,8 +57,9 @@ public class PA5Main
             case "plant":
                 //System.out.println("is flower: " + Flowers.isFlower(lineParts[2]));
                 Pair<Integer, Integer> coords = parseCoordinates(lineParts[1]);
+                String plantType = lineParts[2].toLowerCase();
                 //System.out.println("Line Parts: " + lineParts[2]);
-                garden.plant(coords.getValue0(), coords.getValue1(), lineParts[2]);
+                garden.plant(coords.getValue0(), coords.getValue1(), plantType);
                 break;
 
             case "grow":

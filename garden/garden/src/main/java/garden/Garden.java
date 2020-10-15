@@ -14,14 +14,24 @@ public class Garden {
     }
 
     public void plant(int row, int col, String plantType) {
+        if (!validateCoords(row, col)) {
+            //System.out.println("can't plant there.")
+            return;
+        }
+
         Plot plot = garden[row][col];
+        if (plot.plant != null) {
+            plot.plant = null; 
+            plot.clear();
+        };
+
         Plant plant;
         
         if (Flowers.isFlower(plantType)) {
             plant = new Flower(plantType, plot);
             plot.plant(plant);
         } else if (Vegetables.isVegetable(plantType)) {
-            plant = new Vegetable(plantType, garden[row][col]);
+            plant = new Vegetable(plantType, plot);
             plot.plant(plant);  
         } else if (Trees.isTree(plantType)) {
             plant = new Tree(plantType, plot);
@@ -54,7 +64,7 @@ public class Garden {
 
     public void grow(int amount, int row, int col) {
         if (!validateCoords(row, col)) {
-            System.out.println("row: " + row + "; col: " + col);
+            //System.out.println("row: " + row + "; col: " + col);
             System.out.println("can't grow there.\n");
             return;
         }
@@ -232,7 +242,10 @@ public class Garden {
     }
 
     private boolean validateCoords(int rowIndex, int colIndex) {
-        return rowIndex < rowSize && colIndex < colSize;
+        return rowIndex < rowSize
+            && rowIndex > 0 
+            && colIndex < colSize
+            && colIndex > 0;
     }
 
     private void copyArray(String[][] source, String[][] target, int rowStart, int colStart) {
