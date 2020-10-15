@@ -158,8 +158,17 @@ public class PA5Main
                     garden.grow(amount1, coords.getValue0(), coords.getValue1());
                 } else {
                     // grow 1 plantType
-                    String plantType = lineParts[2];
-                    garden.growPlantType(amount1, plantType);
+                    String plantTypeOrClass = lineParts[2];
+                    switch(plantTypeOrClass) {
+                        case "vegetable":
+                        case "tree":
+                        case "flower":
+                            garden.growPlantClass(amount1, plantTypeOrClass);
+                            break;
+                        default:
+                            garden.growPlantType(amount1, plantTypeOrClass);
+                            break;
+                    }
                 }
                 break;
 

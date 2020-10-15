@@ -68,6 +68,8 @@ public class Garden {
     public void growPlantClass(int amount, String plantClass) {
         IPlotVoidOperator growPlantClass = (plot) -> {
             Plant plant = plot.plant;
+            //System.out.println("plant: " + plant.getClass().toString());
+    
             if (plant != null && 
                 plant.getClass().toString().toLowerCase().contains(plantClass.toLowerCase())) {
                 plant.grow(amount);
@@ -81,7 +83,7 @@ public class Garden {
         IPlotVoidOperator pickFlowers = (plot) -> {
             Plant plant = plot.plant;
             if (plant != null && 
-                plant.type.toLowerCase().equals(plantType.toLowerCase())) {
+                plant.type.toLowerCase().contains(plantType.toLowerCase())) {
                 plant.grow(amount);
             }
         };
