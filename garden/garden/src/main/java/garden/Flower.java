@@ -35,7 +35,7 @@ public class Flower extends Plant {
                     {".",".",  s,".","."}
                 };
                 break;
-            case 2:
+            case 3:
                 plot.plot = new String[][]{
                     {".",  s,  s,  s,"."},
                     {  s,  s,  s,  s,  s},
