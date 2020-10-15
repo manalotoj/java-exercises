@@ -8,7 +8,7 @@ public class Flower extends Plant {
     }
 
     protected int getMaxSize() {
-        return 3;
+        return 4;
     }
 
     public void grow(int amount) {
