@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import javax.swing.plaf.synth.SynthMenuBarUI;
-
 import org.javatuples.Pair;
 
 public class PA5Main 
@@ -217,7 +215,7 @@ public class PA5Main
         System.out.println();
 
         // try enums
-        Flowers rose = Flowers.Rose;
+        Flowers rose = Flowers.rose;
         System.out.println(rose);
         System.out.println();
 

@@ -53,7 +53,11 @@ public class Garden {
     }
 
     public void grow(int amount, int row, int col) {
-        if (!validateCoords(row, col)) return;
+        if (!validateCoords(row, col)) {
+            System.out.println("row: " + row + "; col: " + col);
+            System.out.println("can't grow there.\n");
+            return;
+        }
         
         Plant plant = garden[row][col].plant;
         if (plant != null) {
@@ -98,11 +102,16 @@ public class Garden {
     }
 
     public void harvest(int row, int col) {
-        if (!validateCoords(row, col)) return;
+        if (!validateCoords(row, col)) {
+            System.out.println("can't harvest there.\n");
+            return;
+        }
 
         Plant plant = garden[row][col].plant;
         if (plant != null && plant instanceof Vegetable) {
             garden[row][col].clear();
+        } else {
+            System.out.println("can't harvest there.\n");
         }
     }
 
@@ -132,11 +141,16 @@ public class Garden {
     }
 
     public void pick(int row, int col) {
-        if (!validateCoords(row, col)) return;
+        if (!validateCoords(row, col)) { 
+            System.out.println("can't pick there.\n");
+            return;
+        }
 
         Plant plant = garden[row][col].plant;
         if (plant != null && plant instanceof Flower) {
             garden[row][col].clear();
+        } else {
+            System.out.println("can't pick there.\n");
         }
     }
 
@@ -166,11 +180,16 @@ public class Garden {
     }
 
     public void cut(int row, int col) {
-        if (!validateCoords(row, col)) return;
+        if (!validateCoords(row, col)) {
+            System.out.println("can't cut there.\n");
+            return;
+        }
 
         Plant plant = garden[row][col].plant;
         if (plant != null && plant instanceof Tree) {
             garden[row][col].clear();
+        } else {
+            System.out.println("can't cut there.\n");
         }
     }
 
@@ -211,7 +230,7 @@ public class Garden {
     }
 
     private boolean validateCoords(int rowIndex, int colIndex) {
-        return rowIndex < rowSize && colIndex < colIndex;
+        return rowIndex < rowSize && colIndex < colSize;
     }
 
     private void copyArray(String[][] source, String[][] target, int rowStart, int colStart) {
